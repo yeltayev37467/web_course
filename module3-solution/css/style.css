@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.tall-section {
+    background-color: #f8f9fa;
+    height: 1000px; 
+    padding: 20px 0;
+}
+
+h1, h2, h3 {
+    margin: 20px 0;
+}
+
+.navbar {
+    background-color: #007bff;
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-toggle {
+    border-color: white;
+}
+
+.navbar-nav > li > a {
+    color: white !important;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.btn-primary {
+    margin-top: 20px;
+}
+
+.col-md-4, .col-sm-6, .col-xs-12 {
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav > li > a {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .tall-section {
+        height: auto;
+    }
+}
