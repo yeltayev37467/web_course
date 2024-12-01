@@ -53,27 +53,33 @@ document.addEventListener("DOMContentLoaded", function (event) {
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
     allCategoriesUrl,
-    buildAndShowHomeHTML,
-    true
-  );
+    buildAndShowHomeHTML, // Call function to handle categories
+    true); // Get categories data from the server
 });
 
 function buildAndShowHomeHTML(categories) {
-  $ajaxUtils.sendGetRequest(homeHtmlUrl, function (homeHtml) {
 
-    var chosenCategory = chooseRandomCategory(categories);
+  $ajaxUtils.sendGetRequest(
+    homeHtmlUrl,
+    function (homeHtml) {
 
-    // STEP 3: Replace {{randomCategoryShortName}} with the random category short name
-    var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategory.short_name + "'");
+      // STEP 2: Choose a random category
+      var chosenCategory = chooseRandomCategory(categories);
+      var chosenCategoryShortName = chosenCategory.short_name;
 
-    insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
+      // STEP 3: Substitute {{randomCategoryShortName}} with the chosen category short name
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName + "'");
 
-  }, false);
+      // STEP 4: Insert the final HTML into the main page
+      insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
+
+    },
+    false); // No need to process JSON for home snippet HTML
 }
 
 function chooseRandomCategory(categories) {
-  var randomIndex = Math.floor(Math.random() * categories.length);
-  return categories[randomIndex];
+  var randomArrayIndex = Math.floor(Math.random() * categories.length);
+  return categories[randomArrayIndex]; // Return the random category object
 }
 
 global.$dc = dc;
